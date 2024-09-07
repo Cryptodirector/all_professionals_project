@@ -1,0 +1,152 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: url('/static/img/—Pngtree—safe production and safe construction_1475647.jpg') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.header {
+    background-color: #FF6347;
+    color: white;
+    width: 100%;
+    padding: 15px;
+    text-align: center;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.title {
+    font-size: 22px; /* Уменьшен размер шрифта */
+    font-weight: bold;
+    margin: 0;
+    padding-left: 60px; /* Уменьшен отступ для логотипа */
+    text-align: center;
+    flex: 1;
+}
+
+.logo {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    height: 40px; /* Уменьшен размер логотипа */
+}
+
+.form-container {
+    margin-top: 20px;
+    width: 90%;
+    max-width: 400px; /* Уменьшена максимальная ширина */
+    padding: 15px; /* Уменьшен отступ */
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px; /* Уменьшен радиус скругления */
+    box-sizing: border-box;
+}
+
+.form-container h2 {
+    text-align: center;
+    margin-bottom: 15px; /* Уменьшен нижний отступ */
+    color: #333;
+    font-size: 20px; /* Уменьшен размер шрифта заголовка */
+}
+
+.form-group {
+    margin-bottom: 12px; /* Уменьшен нижний отступ */
+    width: 100%;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 4px; /* Уменьшен нижний отступ */
+    color: #555;
+    font-size: 14px; /* Уменьшен размер шрифта */
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"],
+.form-group select {
+    width: 100%;
+    padding: 8px; /* Уменьшен внутренний отступ */
+    border: 1px solid #ddd;
+    border-radius: 4px; /* Уменьшен радиус скругления */
+    font-size: 14px; /* Уменьшен размер шрифта */
+    box-sizing: border-box;
+}
+
+.form-group button {
+    width: 100%;
+    padding: 8px; /* Уменьшен внутренний отступ */
+    background-color: #FF6347;
+    border: none;
+    border-radius: 4px; /* Уменьшен радиус скругления */
+    color: white;
+    font-size: 16px; /* Уменьшен размер шрифта */
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.form-group button:hover {
+    background-color: #333;
+}
+
+.redirect {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Занимает всю высоту экрана */
+    text-align: center; /* Текст по центру внутри блока */
+    background-color: rgba(255, 255, 255, 0.8); /* Полупрозрачный фон */
+    color: #333; /* Цвет текста */
+    padding: 20px; /* Отступы внутри блока */
+}
+
+.redirect h3 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Адаптация для мобильных устройств */
+@media (max-width: 600px) {
+    .redirect {
+        padding: 10px; /* Уменьшаем отступы на маленьких экранах */
+    }
+
+    .redirect h3 {
+        font-size: 18px; /* Уменьшаем размер шрифта на мобильных */
+    }
+}
+
+@media (max-width: 400px) {
+    .redirect h3 {
+        font-size: 16px; /* Еще меньше размер шрифта для очень маленьких экранов */
+    }
+}
+
+@media (max-width: 600px) {
+    .header {
+        padding: 12px; /* Уменьшен отступ */
+    }
+
+    .title {
+        font-size: 18px; /* Уменьшен размер шрифта */
+        padding-left: 50px; /* Уменьшен отступ для логотипа */
+    }
+
+    .logo {
+        height: 30px; /* Уменьшен размер логотипа */
+        left: 5px;
+    }
+
+    .form-container {
+        padding: 12px; /* Уменьшен отступ */
+        margin: 10px;
+        max-width: 100%; /* Обеспечивает, что контейнер формы не выходит за пределы экрана */
+    }
+}

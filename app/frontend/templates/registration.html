@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ВСЕ ПРОФИ "ВТ"</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+    <style>
+        .error-message {
+            color: red;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1 class="title">ООО ВСЕ ПРОФИ "ВП"👷🏻</h1>
+    </div>
+
+    <div class="form-container">
+        <h2>Регистрация</h2>
+        <form id="registration-form" method="post" action="https://all-professionls.ru/registration">
+            <div class="form-group">
+                <label for="name">Имя:</label>
+                <input type="text" id="name" name="name" required>
+                <div class="error-message" id="name-error"></div>
+            </div>
+            <div class="form-group">
+                <label for="last_name">Фамилия:</label>
+                <input type="text" id="last_name" name="last_name" required>
+                <div class="error-message" id="last_name-error"></div>
+            </div>
+            <div class="form-group">
+                <label for="surname">Отчество:</label>
+                <input type="text" id="surname" name="surname" required>
+                <div class="error-message" id="surname-error"></div>
+            </div>
+            <div class="form-group">
+                <label for="number">Телефон:</label>
+                <input type="text" id="number" name="number" required>
+                <div class="error-message" id="number-error"></div>
+            </div>
+            <div class="form-group">
+                <label for="city">Город:</label>
+                <select id="city" name="city" required>
+                    <option value="" disabled selected>Выберите город</option>
+                    {% for i in city %}
+                        <option value="{{ i.id }}">{{ i.title }}</option>
+                    {% endfor %}
+                </select>
+                <div class="error-message" id="city-error"></div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <div class="error-message" id="email-error"></div>
+            </div>
+            <div class="form-group">
+                <label for="id_prof">Специальность:</label>
+                <select id="id_prof" name="id_prof" multiple size="30" required>
+
+                    {% for j in prof %}
+                        <option value="{{ j.id }}">{{ j.title }}</option>
+                    {% endfor %}
+                </select>
+                <div class="error-message" id="id_prof-error"></div>
+            </div>
+            <div class="form-group">
+                <label for="qualification">Квалификация (Разряд):</label>
+                <input type="text" id="qualification" name="qualification" required>
+                <div class="error-message" id="qualification-error"></div>
+            </div>
+            <div class="form-group">
+                <label for="experience">Опыт работы:</label>
+                <input type="text" id="experience" name="experience" required>
+                <div class="error-message" id="experience-error"></div>
+            </div>
+            <div class="form-group">
+                <label for="ready_business_trip">Готовы ли вы к командировкам?</label>
+                <input type="checkbox" id="ready_business_trip" value="true" name="ready_business_trip">
+                <div class="error-message" id="ready_business_trip-error"></div>
+            </div>
+            <div class="form-group">
+                <button type="submit">Зарегистрироваться</button>
+            </div>
+        </form>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#id_prof').select2({
+                placeholder: "Введите свою специальность", // Добавляем placeholder
+                allowClear: true  // Позволяет очищать выбор
+            });
+        });
+    </script>
+    <script>
+    document.getElementById('registration-form').addEventListener('submit', async function(event) {
+        event.preventDefault(); // Отменяем стандартное поведение формы
+
+        const formData = new FormData(this);
+        const response = await fetch(this.action, {
+            method: 'POST',
+            body: formData
+        });
+
+        if (!response.ok) {
+            const data = await response.json();
+
+            // Сбросить все предыдущие ошибки
+            document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
+
+            // Отобразить новые ошибки
+            data.detail.forEach(error => {
+                const field = error.loc[1];
+                const message = error.msg;
+                const errorElement = document.getElementById(`${field}-error`);
+
+                if (errorElement) {
+                    errorElement.textContent = message;
+                }
+            });
+        } else {
+            // Успешная отправка формы
+            alert('Форма успешно отправлена!');
+            this.reset(); // Очистка формы
+        }
+    });
+    </script>
+</body>
+</html>
